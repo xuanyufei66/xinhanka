@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <dubbo:application name="gateway-provider" owner="gateway-provider"/>
+    <dubbo:registry address="zookeeper://${dubbo.zookeeper}" check="false" subscribe="false"/>
+    <!-- 声明需要暴露的服务接口 -->
+
+    <dubbo:protocol name="dubbo" port="${dubbo.port}"/>
+    <dubbo:service interface="com.payease.wallet.gateway.api.service.IAuthenticationService" ref="authenticationServiceImpl" protocol="dubbo" timeout="5000"/>
+    <dubbo:service interface="com.payease.wallet.gateway.api.service.IMessageCallService" ref="messageCallServiceImpl" protocol="dubbo" timeout="5000"/>
+    <dubbo:service interface="com.payease.wallet.gateway.api.service.IPaymentService" ref="paymentServiceImpl" protocol="dubbo" timeout="5000"/>
+    <dubbo:service interface="com.payease.wallet.gateway.api.service.IFastPaymentService" ref="fastPaymentServiceImpl" protocol="dubbo" timeout="5000"/>
+
+</beans>

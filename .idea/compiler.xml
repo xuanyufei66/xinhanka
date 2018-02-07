@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="wallet-app" />
+        <module name="wallet-dto" />
+        <module name="wallet-entity" />
+        <module name="wallet-orm" />
+        <module name="wallet-scheduling" />
+        <module name="wallet-service-app-api" />
+        <module name="wallet-service-app-impl" />
+        <module name="wallet-service-gateway-api" />
+        <module name="wallet-service-gateway-impl" />
+        <module name="wallet-service-koreacard-api" />
+        <module name="wallet-service-koreacard-impl" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="wallet-app" target="1.8" />
+      <module name="wallet-dto" target="1.8" />
+      <module name="wallet-entity" target="1.8" />
+      <module name="wallet-orm" target="1.8" />
+      <module name="wallet-parent" target="1.8" />
+      <module name="wallet-scheduling" target="1.8" />
+      <module name="wallet-service" target="1.8" />
+      <module name="wallet-service-app-api" target="1.8" />
+      <module name="wallet-service-app-impl" target="1.8" />
+      <module name="wallet-service-gateway-api" target="1.8" />
+      <module name="wallet-service-gateway-impl" target="1.8" />
+      <module name="wallet-service-koreacard-api" target="1.8" />
+      <module name="wallet-service-koreacard-impl" target="1.8" />
+      <module name="walletservicekoreacardapi" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

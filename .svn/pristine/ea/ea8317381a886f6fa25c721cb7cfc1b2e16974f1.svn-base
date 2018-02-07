@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.payease.wallet.orm.inter.TBankBaseMapper" >
+  <resultMap id="BaseResultMap" type="com.payease.wallet.entity.pojo.TBankBase" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="bank_name" property="bankName" jdbcType="VARCHAR" />
+    <result column="bank_logo_url" property="bankLogoUrl" jdbcType="VARCHAR" />
+    <result column="bank_logo_not_color_url" property="bankLogoNotColorUrl" jdbcType="VARCHAR" />
+    <result column="bank_bg_color" property="bankBgColor" jdbcType="VARCHAR" />
+    <result column="bank_code" property="bankCode" jdbcType="VARCHAR" />
+    <result column="bank_lang_code" property="bankLangCode" jdbcType="VARCHAR" />
+    <result column="single_limit" property="singleLimit" jdbcType="VARCHAR" />
+    <result column="day_limit" property="dayLimit" jdbcType="VARCHAR" />
+    <result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="updatetime" property="updatetime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, bank_name, bank_logo_url, bank_logo_not_color_url, bank_bg_color, bank_code, 
+    bank_lang_code, single_limit, day_limit, createtime, updatetime
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.payease.wallet.entity.pojo.TBankBaseExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_bank_base
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_bank_base
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_bank_base
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.payease.wallet.entity.pojo.TBankBaseExample" >
+    delete from t_bank_base
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.payease.wallet.entity.pojo.TBankBase" useGeneratedKeys="true" keyProperty="id" >
+    insert into t_bank_base (bank_name, bank_logo_url, bank_logo_not_color_url, 
+      bank_bg_color, bank_code, bank_lang_code, 
+      single_limit, day_limit, createtime, 
+      updatetime)
+    values (#{bankName,jdbcType=VARCHAR}, #{bankLogoUrl,jdbcType=VARCHAR}, #{bankLogoNotColorUrl,jdbcType=VARCHAR}, 
+      #{bankBgColor,jdbcType=VARCHAR}, #{bankCode,jdbcType=VARCHAR}, #{bankLangCode,jdbcType=VARCHAR}, 
+      #{singleLimit,jdbcType=VARCHAR}, #{dayLimit,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, 
+      #{updatetime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.payease.wallet.entity.pojo.TBankBase" useGeneratedKeys="true" keyProperty="id" >
+    insert into t_bank_base
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="bankName != null" >
+        bank_name,
+      </if>
+      <if test="bankLogoUrl != null" >
+        bank_logo_url,
+      </if>
+      <if test="bankLogoNotColorUrl != null" >
+        bank_logo_not_color_url,
+      </if>
+      <if test="bankBgColor != null" >
+        bank_bg_color,
+      </if>
+      <if test="bankCode != null" >
+        bank_code,
+      </if>
+      <if test="bankLangCode != null" >
+        bank_lang_code,
+      </if>
+      <if test="singleLimit != null" >
+        single_limit,
+      </if>
+      <if test="dayLimit != null" >
+        day_limit,
+      </if>
+      <if test="createtime != null" >
+        createtime,
+      </if>
+      <if test="updatetime != null" >
+        updatetime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="bankName != null" >
+        #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankLogoUrl != null" >
+        #{bankLogoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="bankLogoNotColorUrl != null" >
+        #{bankLogoNotColorUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="bankBgColor != null" >
+        #{bankBgColor,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCode != null" >
+        #{bankCode,jdbcType=VARCHAR},
+      </if>
+      <if test="bankLangCode != null" >
+        #{bankLangCode,jdbcType=VARCHAR},
+      </if>
+      <if test="singleLimit != null" >
+        #{singleLimit,jdbcType=VARCHAR},
+      </if>
+      <if test="dayLimit != null" >
+        #{dayLimit,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.payease.wallet.entity.pojo.TBankBaseExample" resultType="java.lang.Integer" >
+    select count(*) from t_bank_base
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_bank_base
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.bankName != null" >
+        bank_name = #{record.bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bankLogoUrl != null" >
+        bank_logo_url = #{record.bankLogoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bankLogoNotColorUrl != null" >
+        bank_logo_not_color_url = #{record.bankLogoNotColorUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bankBgColor != null" >
+        bank_bg_color = #{record.bankBgColor,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bankCode != null" >
+        bank_code = #{record.bankCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bankLangCode != null" >
+        bank_lang_code = #{record.bankLangCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.singleLimit != null" >
+        single_limit = #{record.singleLimit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dayLimit != null" >
+        day_limit = #{record.dayLimit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createtime != null" >
+        createtime = #{record.createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updatetime != null" >
+        updatetime = #{record.updatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_bank_base
+    set id = #{record.id,jdbcType=BIGINT},
+      bank_name = #{record.bankName,jdbcType=VARCHAR},
+      bank_logo_url = #{record.bankLogoUrl,jdbcType=VARCHAR},
+      bank_logo_not_color_url = #{record.bankLogoNotColorUrl,jdbcType=VARCHAR},
+      bank_bg_color = #{record.bankBgColor,jdbcType=VARCHAR},
+      bank_code = #{record.bankCode,jdbcType=VARCHAR},
+      bank_lang_code = #{record.bankLangCode,jdbcType=VARCHAR},
+      single_limit = #{record.singleLimit,jdbcType=VARCHAR},
+      day_limit = #{record.dayLimit,jdbcType=VARCHAR},
+      createtime = #{record.createtime,jdbcType=TIMESTAMP},
+      updatetime = #{record.updatetime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.payease.wallet.entity.pojo.TBankBase" >
+    update t_bank_base
+    <set >
+      <if test="bankName != null" >
+        bank_name = #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankLogoUrl != null" >
+        bank_logo_url = #{bankLogoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="bankLogoNotColorUrl != null" >
+        bank_logo_not_color_url = #{bankLogoNotColorUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="bankBgColor != null" >
+        bank_bg_color = #{bankBgColor,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCode != null" >
+        bank_code = #{bankCode,jdbcType=VARCHAR},
+      </if>
+      <if test="bankLangCode != null" >
+        bank_lang_code = #{bankLangCode,jdbcType=VARCHAR},
+      </if>
+      <if test="singleLimit != null" >
+        single_limit = #{singleLimit,jdbcType=VARCHAR},
+      </if>
+      <if test="dayLimit != null" >
+        day_limit = #{dayLimit,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.payease.wallet.entity.pojo.TBankBase" >
+    update t_bank_base
+    set bank_name = #{bankName,jdbcType=VARCHAR},
+      bank_logo_url = #{bankLogoUrl,jdbcType=VARCHAR},
+      bank_logo_not_color_url = #{bankLogoNotColorUrl,jdbcType=VARCHAR},
+      bank_bg_color = #{bankBgColor,jdbcType=VARCHAR},
+      bank_code = #{bankCode,jdbcType=VARCHAR},
+      bank_lang_code = #{bankLangCode,jdbcType=VARCHAR},
+      single_limit = #{singleLimit,jdbcType=VARCHAR},
+      day_limit = #{dayLimit,jdbcType=VARCHAR},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      updatetime = #{updatetime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

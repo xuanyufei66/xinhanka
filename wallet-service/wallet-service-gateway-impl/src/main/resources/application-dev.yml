@@ -1,0 +1,12 @@
+log:
+  level: INFO
+  path: /opt/o9ias/app/log/wallet-service-gateway-impl
+  days: 30
+server:
+  port: 8001
+
+
+
+dubbo:
+  zookeeper: localhost:2181
+  port: 20880

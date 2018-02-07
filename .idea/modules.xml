@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/wallet-app/wallet-app.iml" filepath="$PROJECT_DIR$/wallet-app/wallet-app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wallet-dto/wallet-dto.iml" filepath="$PROJECT_DIR$/wallet-dto/wallet-dto.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wallet-entity/wallet-entity.iml" filepath="$PROJECT_DIR$/wallet-entity/wallet-entity.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wallet-orm/wallet-orm.iml" filepath="$PROJECT_DIR$/wallet-orm/wallet-orm.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wallet-parent.iml" filepath="$PROJECT_DIR$/wallet-parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wallet-scheduling/wallet-scheduling.iml" filepath="$PROJECT_DIR$/wallet-scheduling/wallet-scheduling.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wallet-service/wallet-service.iml" filepath="$PROJECT_DIR$/wallet-service/wallet-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wallet-service/wallet-service-app-api/wallet-service-app-api.iml" filepath="$PROJECT_DIR$/wallet-service/wallet-service-app-api/wallet-service-app-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wallet-service/wallet-service-app-impl/wallet-service-app-impl.iml" filepath="$PROJECT_DIR$/wallet-service/wallet-service-app-impl/wallet-service-app-impl.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wallet-service/wallet-service-gateway-api/wallet-service-gateway-api.iml" filepath="$PROJECT_DIR$/wallet-service/wallet-service-gateway-api/wallet-service-gateway-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wallet-service/wallet-service-gateway-impl/wallet-service-gateway-impl.iml" filepath="$PROJECT_DIR$/wallet-service/wallet-service-gateway-impl/wallet-service-gateway-impl.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wallet-service/wallet-service-koreacard-api/wallet-service-koreacard-api.iml" filepath="$PROJECT_DIR$/wallet-service/wallet-service-koreacard-api/wallet-service-koreacard-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wallet-service/wallet-service-koreacard-impl/wallet-service-koreacard-impl.iml" filepath="$PROJECT_DIR$/wallet-service/wallet-service-koreacard-impl/wallet-service-koreacard-impl.iml" />
+    </modules>
+  </component>
+</project>

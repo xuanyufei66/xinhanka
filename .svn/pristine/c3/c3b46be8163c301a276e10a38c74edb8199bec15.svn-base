@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="wallet-app:war">
+    <output-path>$PROJECT_DIR$/wallet-app/target</output-path>
+    <root id="archive" name="wallet-app.war">
+      <element id="artifact" artifact-name="wallet-app:war exploded" />
+    </root>
+  </artifact>
+</component>

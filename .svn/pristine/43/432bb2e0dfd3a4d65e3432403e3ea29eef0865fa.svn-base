@@ -1,0 +1,15 @@
+# 数据库驱动jar 路径
+#mysql
+drive.class.path=/Users/apple/Documents/software/repository/mysql/mysql-connector-java/5.1.27/mysql-connector-java-5.1.27.jar
+
+#oracle
+#drive.class.path=E\:\\mvnrepository\\com\\oracle\\ojdbc14\\10.2.0.4.0\\ojdbc14-10.2.0.4.0.jar
+
+# 数据库连接参数
+#mysql
+jdbc.driver=com.mysql.jdbc.Driver
+jdbc.url=jdbc:mysql://localhost:3306/pebao?useUnicode=true&characterEncoding=utf-8
+jdbc.username=root
+jdbc.password=1234qwer
+
+

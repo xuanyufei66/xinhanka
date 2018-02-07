@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.payease.wallet.orm.inter.TUserInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.payease.wallet.entity.pojo.TUserInfo" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="userref" property="userref" jdbcType="VARCHAR" />
+    <result column="real_name" property="realName" jdbcType="VARCHAR" />
+    <result column="nick_name" property="nickName" jdbcType="VARCHAR" />
+    <result column="identity_card_no" property="identityCardNo" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="CHAR" />
+    <result column="mobile_phone" property="mobilePhone" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="region_location" property="regionLocation" jdbcType="VARCHAR" />
+    <result column="passport_no" property="passportNo" jdbcType="VARCHAR" />
+    <result column="img_file_url" property="imgFileUrl" jdbcType="VARCHAR" />
+    <result column="lssue_date" property="lssueDate" jdbcType="VARCHAR" />
+    <result column="expiration_date" property="expirationDate" jdbcType="VARCHAR" />
+    <result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="updatetime" property="updatetime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, userref, real_name, nick_name, identity_card_no, sex, mobile_phone, email, region_location, 
+    passport_no, img_file_url, lssue_date, expiration_date, createtime, updatetime
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.payease.wallet.entity.pojo.TUserInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_user_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_user_info
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_user_info
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.payease.wallet.entity.pojo.TUserInfoExample" >
+    delete from t_user_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.payease.wallet.entity.pojo.TUserInfo" useGeneratedKeys="true" keyProperty="id" >
+    insert into t_user_info (userref, real_name, nick_name, 
+      identity_card_no, sex, mobile_phone, 
+      email, region_location, passport_no, 
+      img_file_url, lssue_date, expiration_date, 
+      createtime, updatetime)
+    values (#{userref,jdbcType=VARCHAR}, #{realName,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR}, 
+      #{identityCardNo,jdbcType=VARCHAR}, #{sex,jdbcType=CHAR}, #{mobilePhone,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{regionLocation,jdbcType=VARCHAR}, #{passportNo,jdbcType=VARCHAR}, 
+      #{imgFileUrl,jdbcType=VARCHAR}, #{lssueDate,jdbcType=VARCHAR}, #{expirationDate,jdbcType=VARCHAR}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.payease.wallet.entity.pojo.TUserInfo" useGeneratedKeys="true" keyProperty="id" >
+    insert into t_user_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userref != null" >
+        userref,
+      </if>
+      <if test="realName != null" >
+        real_name,
+      </if>
+      <if test="nickName != null" >
+        nick_name,
+      </if>
+      <if test="identityCardNo != null" >
+        identity_card_no,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="mobilePhone != null" >
+        mobile_phone,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="regionLocation != null" >
+        region_location,
+      </if>
+      <if test="passportNo != null" >
+        passport_no,
+      </if>
+      <if test="imgFileUrl != null" >
+        img_file_url,
+      </if>
+      <if test="lssueDate != null" >
+        lssue_date,
+      </if>
+      <if test="expirationDate != null" >
+        expiration_date,
+      </if>
+      <if test="createtime != null" >
+        createtime,
+      </if>
+      <if test="updatetime != null" >
+        updatetime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userref != null" >
+        #{userref,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null" >
+        #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null" >
+        #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="identityCardNo != null" >
+        #{identityCardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=CHAR},
+      </if>
+      <if test="mobilePhone != null" >
+        #{mobilePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="regionLocation != null" >
+        #{regionLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="passportNo != null" >
+        #{passportNo,jdbcType=VARCHAR},
+      </if>
+      <if test="imgFileUrl != null" >
+        #{imgFileUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="lssueDate != null" >
+        #{lssueDate,jdbcType=VARCHAR},
+      </if>
+      <if test="expirationDate != null" >
+        #{expirationDate,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.payease.wallet.entity.pojo.TUserInfoExample" resultType="java.lang.Integer" >
+    select count(*) from t_user_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_user_info
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.userref != null" >
+        userref = #{record.userref,jdbcType=VARCHAR},
+      </if>
+      <if test="record.realName != null" >
+        real_name = #{record.realName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nickName != null" >
+        nick_name = #{record.nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.identityCardNo != null" >
+        identity_card_no = #{record.identityCardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sex != null" >
+        sex = #{record.sex,jdbcType=CHAR},
+      </if>
+      <if test="record.mobilePhone != null" >
+        mobile_phone = #{record.mobilePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.email != null" >
+        email = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.regionLocation != null" >
+        region_location = #{record.regionLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.passportNo != null" >
+        passport_no = #{record.passportNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.imgFileUrl != null" >
+        img_file_url = #{record.imgFileUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lssueDate != null" >
+        lssue_date = #{record.lssueDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.expirationDate != null" >
+        expiration_date = #{record.expirationDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createtime != null" >
+        createtime = #{record.createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updatetime != null" >
+        updatetime = #{record.updatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_user_info
+    set id = #{record.id,jdbcType=BIGINT},
+      userref = #{record.userref,jdbcType=VARCHAR},
+      real_name = #{record.realName,jdbcType=VARCHAR},
+      nick_name = #{record.nickName,jdbcType=VARCHAR},
+      identity_card_no = #{record.identityCardNo,jdbcType=VARCHAR},
+      sex = #{record.sex,jdbcType=CHAR},
+      mobile_phone = #{record.mobilePhone,jdbcType=VARCHAR},
+      email = #{record.email,jdbcType=VARCHAR},
+      region_location = #{record.regionLocation,jdbcType=VARCHAR},
+      passport_no = #{record.passportNo,jdbcType=VARCHAR},
+      img_file_url = #{record.imgFileUrl,jdbcType=VARCHAR},
+      lssue_date = #{record.lssueDate,jdbcType=VARCHAR},
+      expiration_date = #{record.expirationDate,jdbcType=VARCHAR},
+      createtime = #{record.createtime,jdbcType=TIMESTAMP},
+      updatetime = #{record.updatetime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.payease.wallet.entity.pojo.TUserInfo" >
+    update t_user_info
+    <set >
+      <if test="userref != null" >
+        userref = #{userref,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null" >
+        real_name = #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null" >
+        nick_name = #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="identityCardNo != null" >
+        identity_card_no = #{identityCardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=CHAR},
+      </if>
+      <if test="mobilePhone != null" >
+        mobile_phone = #{mobilePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="regionLocation != null" >
+        region_location = #{regionLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="passportNo != null" >
+        passport_no = #{passportNo,jdbcType=VARCHAR},
+      </if>
+      <if test="imgFileUrl != null" >
+        img_file_url = #{imgFileUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="lssueDate != null" >
+        lssue_date = #{lssueDate,jdbcType=VARCHAR},
+      </if>
+      <if test="expirationDate != null" >
+        expiration_date = #{expirationDate,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.payease.wallet.entity.pojo.TUserInfo" >
+    update t_user_info
+    set userref = #{userref,jdbcType=VARCHAR},
+      real_name = #{realName,jdbcType=VARCHAR},
+      nick_name = #{nickName,jdbcType=VARCHAR},
+      identity_card_no = #{identityCardNo,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=CHAR},
+      mobile_phone = #{mobilePhone,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      region_location = #{regionLocation,jdbcType=VARCHAR},
+      passport_no = #{passportNo,jdbcType=VARCHAR},
+      img_file_url = #{imgFileUrl,jdbcType=VARCHAR},
+      lssue_date = #{lssueDate,jdbcType=VARCHAR},
+      expiration_date = #{expirationDate,jdbcType=VARCHAR},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      updatetime = #{updatetime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+ <!-- &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
+  <select id="selectRealNamebyid"  resultType="java.lang.String">
+    SELECT real_name FROM  t_user_info WHERE  id = #{userId}
+  </select>
+</mapper>

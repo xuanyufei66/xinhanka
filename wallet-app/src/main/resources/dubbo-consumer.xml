@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <dubbo:application name="dubbo-consumer"/>
+    <dubbo:registry check="false" address="zookeeper://${dubbo.zookeeper}"/>
+    <dubbo:reference interface="com.payease.wallet.app.api.service.IRouterService" id="routerService" check="false"/>
+    <dubbo:reference interface="com.payease.wallet.app.api.service.IRegistryService" id="registryService" check="false"/>
+    <dubbo:reference interface="com.payease.wallet.app.api.service.ILoginService" id="loginService" check="false"/>
+    <dubbo:reference interface="com.payease.wallet.app.api.service.IndexService" id="indexService" check="false"/>
+    <dubbo:reference interface="com.payease.wallet.app.api.service.ISettingService" id="settingService" check="false"/>
+    <dubbo:reference interface="com.payease.wallet.app.api.service.IkoreaCardService" id="koreaCardService" check="false"/>
+    <dubbo:reference interface="com.payease.wallet.app.api.service.IAccountBankCardService" id="accountBankCardService" check="false"/>
+    <dubbo:reference interface="com.payease.wallet.app.api.service.IGetUserInfoService" id="getUserInfoServiceImpl" check="false"/>
+
+
+
+</beans>

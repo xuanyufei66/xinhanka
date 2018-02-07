@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.payease.wallet.orm.inter.TKoreaApplyMapper" >
+  <resultMap id="BaseResultMap" type="com.payease.wallet.entity.pojo.TKoreaApply" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="t_user_info_id" property="tUserInfoId" jdbcType="BIGINT" />
+    <result column="passport_no" property="passportNo" jdbcType="VARCHAR" />
+    <result column="img_file_url" property="imgFileUrl" jdbcType="VARCHAR" />
+    <result column="lssue_date" property="lssueDate" jdbcType="VARCHAR" />
+    <result column="expiration_date" property="expirationDate" jdbcType="VARCHAR" />
+    <result column="to_korea_date" property="toKoreaDate" jdbcType="TIMESTAMP" />
+    <result column="out_korea_date" property="outKoreaDate" jdbcType="TIMESTAMP" />
+    <result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="apply_state" property="applyState" jdbcType="SMALLINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, t_user_info_id, passport_no, img_file_url, lssue_date, expiration_date, to_korea_date, 
+    out_korea_date, createtime, apply_state
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.payease.wallet.entity.pojo.TKoreaApplyExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_korea_apply
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_korea_apply
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_korea_apply
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.payease.wallet.entity.pojo.TKoreaApplyExample" >
+    delete from t_korea_apply
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.payease.wallet.entity.pojo.TKoreaApply" useGeneratedKeys="true" keyProperty="id" >
+    insert into t_korea_apply (t_user_info_id, passport_no, img_file_url, 
+      lssue_date, expiration_date, to_korea_date, 
+      out_korea_date, createtime, apply_state
+      )
+    values (#{tUserInfoId,jdbcType=BIGINT}, #{passportNo,jdbcType=VARCHAR}, #{imgFileUrl,jdbcType=VARCHAR}, 
+      #{lssueDate,jdbcType=VARCHAR}, #{expirationDate,jdbcType=VARCHAR}, #{toKoreaDate,jdbcType=TIMESTAMP}, 
+      #{outKoreaDate,jdbcType=TIMESTAMP}, #{createtime,jdbcType=TIMESTAMP}, #{applyState,jdbcType=SMALLINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.payease.wallet.entity.pojo.TKoreaApply" useGeneratedKeys="true" keyProperty="id" >
+    insert into t_korea_apply
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="tUserInfoId != null" >
+        t_user_info_id,
+      </if>
+      <if test="passportNo != null" >
+        passport_no,
+      </if>
+      <if test="imgFileUrl != null" >
+        img_file_url,
+      </if>
+      <if test="lssueDate != null" >
+        lssue_date,
+      </if>
+      <if test="expirationDate != null" >
+        expiration_date,
+      </if>
+      <if test="toKoreaDate != null" >
+        to_korea_date,
+      </if>
+      <if test="outKoreaDate != null" >
+        out_korea_date,
+      </if>
+      <if test="createtime != null" >
+        createtime,
+      </if>
+      <if test="applyState != null" >
+        apply_state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="tUserInfoId != null" >
+        #{tUserInfoId,jdbcType=BIGINT},
+      </if>
+      <if test="passportNo != null" >
+        #{passportNo,jdbcType=VARCHAR},
+      </if>
+      <if test="imgFileUrl != null" >
+        #{imgFileUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="lssueDate != null" >
+        #{lssueDate,jdbcType=VARCHAR},
+      </if>
+      <if test="expirationDate != null" >
+        #{expirationDate,jdbcType=VARCHAR},
+      </if>
+      <if test="toKoreaDate != null" >
+        #{toKoreaDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="outKoreaDate != null" >
+        #{outKoreaDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="applyState != null" >
+        #{applyState,jdbcType=SMALLINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.payease.wallet.entity.pojo.TKoreaApplyExample" resultType="java.lang.Integer" >
+    select count(*) from t_korea_apply
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_korea_apply
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.tUserInfoId != null" >
+        t_user_info_id = #{record.tUserInfoId,jdbcType=BIGINT},
+      </if>
+      <if test="record.passportNo != null" >
+        passport_no = #{record.passportNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.imgFileUrl != null" >
+        img_file_url = #{record.imgFileUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lssueDate != null" >
+        lssue_date = #{record.lssueDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.expirationDate != null" >
+        expiration_date = #{record.expirationDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.toKoreaDate != null" >
+        to_korea_date = #{record.toKoreaDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.outKoreaDate != null" >
+        out_korea_date = #{record.outKoreaDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createtime != null" >
+        createtime = #{record.createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.applyState != null" >
+        apply_state = #{record.applyState,jdbcType=SMALLINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_korea_apply
+    set id = #{record.id,jdbcType=BIGINT},
+      t_user_info_id = #{record.tUserInfoId,jdbcType=BIGINT},
+      passport_no = #{record.passportNo,jdbcType=VARCHAR},
+      img_file_url = #{record.imgFileUrl,jdbcType=VARCHAR},
+      lssue_date = #{record.lssueDate,jdbcType=VARCHAR},
+      expiration_date = #{record.expirationDate,jdbcType=VARCHAR},
+      to_korea_date = #{record.toKoreaDate,jdbcType=TIMESTAMP},
+      out_korea_date = #{record.outKoreaDate,jdbcType=TIMESTAMP},
+      createtime = #{record.createtime,jdbcType=TIMESTAMP},
+      apply_state = #{record.applyState,jdbcType=SMALLINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.payease.wallet.entity.pojo.TKoreaApply" >
+    update t_korea_apply
+    <set >
+      <if test="tUserInfoId != null" >
+        t_user_info_id = #{tUserInfoId,jdbcType=BIGINT},
+      </if>
+      <if test="passportNo != null" >
+        passport_no = #{passportNo,jdbcType=VARCHAR},
+      </if>
+      <if test="imgFileUrl != null" >
+        img_file_url = #{imgFileUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="lssueDate != null" >
+        lssue_date = #{lssueDate,jdbcType=VARCHAR},
+      </if>
+      <if test="expirationDate != null" >
+        expiration_date = #{expirationDate,jdbcType=VARCHAR},
+      </if>
+      <if test="toKoreaDate != null" >
+        to_korea_date = #{toKoreaDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="outKoreaDate != null" >
+        out_korea_date = #{outKoreaDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createtime != null" >
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="applyState != null" >
+        apply_state = #{applyState,jdbcType=SMALLINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.payease.wallet.entity.pojo.TKoreaApply" >
+    update t_korea_apply
+    set t_user_info_id = #{tUserInfoId,jdbcType=BIGINT},
+      passport_no = #{passportNo,jdbcType=VARCHAR},
+      img_file_url = #{imgFileUrl,jdbcType=VARCHAR},
+      lssue_date = #{lssueDate,jdbcType=VARCHAR},
+      expiration_date = #{expirationDate,jdbcType=VARCHAR},
+      to_korea_date = #{toKoreaDate,jdbcType=TIMESTAMP},
+      out_korea_date = #{outKoreaDate,jdbcType=TIMESTAMP},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      apply_state = #{applyState,jdbcType=SMALLINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

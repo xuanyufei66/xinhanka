@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.payease.wallet.orm.inter.TUserMessageMapper" >
+  <resultMap id="BaseResultMap" type="com.payease.wallet.entity.pojo.TUserMessage" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="t_user_info_id" property="tUserInfoId" jdbcType="BIGINT" />
+    <result column="messag_head" property="messagHead" jdbcType="VARCHAR" />
+    <result column="message_content" property="messageContent" jdbcType="VARCHAR" />
+    <result column="message_from" property="messageFrom" jdbcType="VARCHAR" />
+    <result column="message_time" property="messageTime" jdbcType="TIMESTAMP" />
+    <result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="updatetime" property="updatetime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, t_user_info_id, messag_head, message_content, message_from, message_time, createtime, 
+    updatetime
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.payease.wallet.entity.pojo.TUserMessageExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_user_message
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_user_message
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_user_message
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.payease.wallet.entity.pojo.TUserMessageExample" >
+    delete from t_user_message
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.payease.wallet.entity.pojo.TUserMessage" useGeneratedKeys="true" keyProperty="id" >
+    insert into t_user_message (t_user_info_id, messag_head, message_content, 
+      message_from, message_time, createtime, 
+      updatetime)
+    values (#{tUserInfoId,jdbcType=BIGINT}, #{messagHead,jdbcType=VARCHAR}, #{messageContent,jdbcType=VARCHAR}, 
+      #{messageFrom,jdbcType=VARCHAR}, #{messageTime,jdbcType=TIMESTAMP}, #{createtime,jdbcType=TIMESTAMP}, 
+      #{updatetime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.payease.wallet.entity.pojo.TUserMessage" useGeneratedKeys="true" keyProperty="id" >
+    insert into t_user_message
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="tUserInfoId != null" >
+        t_user_info_id,
+      </if>
+      <if test="messagHead != null" >
+        messag_head,
+      </if>
+      <if test="messageContent != null" >
+        message_content,
+      </if>
+      <if test="messageFrom != null" >
+        message_from,
+      </if>
+      <if test="messageTime != null" >
+        message_time,
+      </if>
+      <if test="createtime != null" >
+        createtime,
+      </if>
+      <if test="updatetime != null" >
+        updatetime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="tUserInfoId != null" >
+        #{tUserInfoId,jdbcType=BIGINT},
+      </if>
+      <if test="messagHead != null" >
+        #{messagHead,jdbcType=VARCHAR},
+      </if>
+      <if test="messageContent != null" >
+        #{messageContent,jdbcType=VARCHAR},
+      </if>
+      <if test="messageFrom != null" >
+        #{messageFrom,jdbcType=VARCHAR},
+      </if>
+      <if test="messageTime != null" >
+        #{messageTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.payease.wallet.entity.pojo.TUserMessageExample" resultType="java.lang.Integer" >
+    select count(*) from t_user_message
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_user_message
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.tUserInfoId != null" >
+        t_user_info_id = #{record.tUserInfoId,jdbcType=BIGINT},
+      </if>
+      <if test="record.messagHead != null" >
+        messag_head = #{record.messagHead,jdbcType=VARCHAR},
+      </if>
+      <if test="record.messageContent != null" >
+        message_content = #{record.messageContent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.messageFrom != null" >
+        message_from = #{record.messageFrom,jdbcType=VARCHAR},
+      </if>
+      <if test="record.messageTime != null" >
+        message_time = #{record.messageTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createtime != null" >
+        createtime = #{record.createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updatetime != null" >
+        updatetime = #{record.updatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_user_message
+    set id = #{record.id,jdbcType=BIGINT},
+      t_user_info_id = #{record.tUserInfoId,jdbcType=BIGINT},
+      messag_head = #{record.messagHead,jdbcType=VARCHAR},
+      message_content = #{record.messageContent,jdbcType=VARCHAR},
+      message_from = #{record.messageFrom,jdbcType=VARCHAR},
+      message_time = #{record.messageTime,jdbcType=TIMESTAMP},
+      createtime = #{record.createtime,jdbcType=TIMESTAMP},
+      updatetime = #{record.updatetime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.payease.wallet.entity.pojo.TUserMessage" >
+    update t_user_message
+    <set >
+      <if test="tUserInfoId != null" >
+        t_user_info_id = #{tUserInfoId,jdbcType=BIGINT},
+      </if>
+      <if test="messagHead != null" >
+        messag_head = #{messagHead,jdbcType=VARCHAR},
+      </if>
+      <if test="messageContent != null" >
+        message_content = #{messageContent,jdbcType=VARCHAR},
+      </if>
+      <if test="messageFrom != null" >
+        message_from = #{messageFrom,jdbcType=VARCHAR},
+      </if>
+      <if test="messageTime != null" >
+        message_time = #{messageTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createtime != null" >
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.payease.wallet.entity.pojo.TUserMessage" >
+    update t_user_message
+    set t_user_info_id = #{tUserInfoId,jdbcType=BIGINT},
+      messag_head = #{messagHead,jdbcType=VARCHAR},
+      message_content = #{messageContent,jdbcType=VARCHAR},
+      message_from = #{messageFrom,jdbcType=VARCHAR},
+      message_time = #{messageTime,jdbcType=TIMESTAMP},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      updatetime = #{updatetime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,23 @@
+spring:
+ profiles:
+  active: local
+
+
+ jackson:
+   date-format: yyyy-MM-dd HH:mm:ss
+   time-zone: GMT+8
+
+
+
+mybatis:
+  mapperLocations: classpath:com/payease/wallet/orm/mapper/*.xml
+  typeAliasesPackage: com.payease.wallet.entity.pojo
+pagehelper:
+    helperDialect: mysql
+    reasonable: true
+    supportMethodsArguments: true
+    params: count=countSql
+
+
+login:
+  exclude: 1001,3000,1002,2001,2009,3006,4001,5009,5008

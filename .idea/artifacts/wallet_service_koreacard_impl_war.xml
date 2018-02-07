@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="wallet-service-koreacard-impl:war">
+    <output-path>$PROJECT_DIR$/wallet-service/wallet-service-koreacard-impl/target</output-path>
+    <root id="archive" name="wallet-service-koreacard-impl.war">
+      <element id="artifact" artifact-name="wallet-service-koreacard-impl:war exploded" />
+    </root>
+  </artifact>
+</component>

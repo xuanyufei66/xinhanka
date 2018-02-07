@@ -1,0 +1,49 @@
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://172.21.180.239:3306/koreadb?useUnicode=true&characterEncoding=utf8&useSSL=false
+    username: koreadb
+    password: Korea$2017
+    driverClassName: com.mysql.jdbc.Driver
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxPoolPreparedStatementPerConnectionSize: 20
+    filters: stat,wall,log4j
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+
+
+  redis:
+    host: 172.21.180.238
+    password: tj2016dev
+
+
+log:
+  level: INFO
+  path: /opt/o9ias/app/log/wallet-scheduling
+  days: 30
+
+server:
+  port: 8004
+
+
+
+dubbo:
+  zookeeper: localhost:2181
+
+own:
+  mid: 20027
+  key: test
+  version: 1.0
+  url:
+  # 代付状态查询接口地址
+    paymentStatus: http://210.73.90.235/merchant/virement/mer_payment_status_utf8.jsp
+

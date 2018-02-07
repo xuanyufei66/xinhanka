@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.payease.wallet.orm.inter.TRouterMapper" >
+  <resultMap id="BaseResultMap" type="com.payease.wallet.entity.pojo.TRouter" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="service_code" property="serviceCode" jdbcType="VARCHAR" />
+    <result column="service_class" property="serviceClass" jdbcType="VARCHAR" />
+    <result column="service_method" property="serviceMethod" jdbcType="VARCHAR" />
+    <result column="service_version" property="serviceVersion" jdbcType="VARCHAR" />
+    <result column="service_name" property="serviceName" jdbcType="VARCHAR" />
+    <result column="service_undefined1" property="serviceUndefined1" jdbcType="VARCHAR" />
+    <result column="service_undefined2" property="serviceUndefined2" jdbcType="VARCHAR" />
+    <result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, service_code, service_class, service_method, service_version, service_name, service_undefined1, 
+    service_undefined2, createtime
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.payease.wallet.entity.pojo.TRouterExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_router
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_router
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_router
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.payease.wallet.entity.pojo.TRouterExample" >
+    delete from t_router
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.payease.wallet.entity.pojo.TRouter" useGeneratedKeys="true" keyProperty="id" >
+    insert into t_router (service_code, service_class, service_method, 
+      service_version, service_name, service_undefined1, 
+      service_undefined2, createtime)
+    values (#{serviceCode,jdbcType=VARCHAR}, #{serviceClass,jdbcType=VARCHAR}, #{serviceMethod,jdbcType=VARCHAR}, 
+      #{serviceVersion,jdbcType=VARCHAR}, #{serviceName,jdbcType=VARCHAR}, #{serviceUndefined1,jdbcType=VARCHAR}, 
+      #{serviceUndefined2,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.payease.wallet.entity.pojo.TRouter" useGeneratedKeys="true" keyProperty="id" >
+    insert into t_router
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="serviceCode != null" >
+        service_code,
+      </if>
+      <if test="serviceClass != null" >
+        service_class,
+      </if>
+      <if test="serviceMethod != null" >
+        service_method,
+      </if>
+      <if test="serviceVersion != null" >
+        service_version,
+      </if>
+      <if test="serviceName != null" >
+        service_name,
+      </if>
+      <if test="serviceUndefined1 != null" >
+        service_undefined1,
+      </if>
+      <if test="serviceUndefined2 != null" >
+        service_undefined2,
+      </if>
+      <if test="createtime != null" >
+        createtime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="serviceCode != null" >
+        #{serviceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceClass != null" >
+        #{serviceClass,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceMethod != null" >
+        #{serviceMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceVersion != null" >
+        #{serviceVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceName != null" >
+        #{serviceName,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceUndefined1 != null" >
+        #{serviceUndefined1,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceUndefined2 != null" >
+        #{serviceUndefined2,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.payease.wallet.entity.pojo.TRouterExample" resultType="java.lang.Integer" >
+    select count(*) from t_router
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_router
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.serviceCode != null" >
+        service_code = #{record.serviceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.serviceClass != null" >
+        service_class = #{record.serviceClass,jdbcType=VARCHAR},
+      </if>
+      <if test="record.serviceMethod != null" >
+        service_method = #{record.serviceMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="record.serviceVersion != null" >
+        service_version = #{record.serviceVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="record.serviceName != null" >
+        service_name = #{record.serviceName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.serviceUndefined1 != null" >
+        service_undefined1 = #{record.serviceUndefined1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.serviceUndefined2 != null" >
+        service_undefined2 = #{record.serviceUndefined2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createtime != null" >
+        createtime = #{record.createtime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_router
+    set id = #{record.id,jdbcType=INTEGER},
+      service_code = #{record.serviceCode,jdbcType=VARCHAR},
+      service_class = #{record.serviceClass,jdbcType=VARCHAR},
+      service_method = #{record.serviceMethod,jdbcType=VARCHAR},
+      service_version = #{record.serviceVersion,jdbcType=VARCHAR},
+      service_name = #{record.serviceName,jdbcType=VARCHAR},
+      service_undefined1 = #{record.serviceUndefined1,jdbcType=VARCHAR},
+      service_undefined2 = #{record.serviceUndefined2,jdbcType=VARCHAR},
+      createtime = #{record.createtime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.payease.wallet.entity.pojo.TRouter" >
+    update t_router
+    <set >
+      <if test="serviceCode != null" >
+        service_code = #{serviceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceClass != null" >
+        service_class = #{serviceClass,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceMethod != null" >
+        service_method = #{serviceMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceVersion != null" >
+        service_version = #{serviceVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceName != null" >
+        service_name = #{serviceName,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceUndefined1 != null" >
+        service_undefined1 = #{serviceUndefined1,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceUndefined2 != null" >
+        service_undefined2 = #{serviceUndefined2,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.payease.wallet.entity.pojo.TRouter" >
+    update t_router
+    set service_code = #{serviceCode,jdbcType=VARCHAR},
+      service_class = #{serviceClass,jdbcType=VARCHAR},
+      service_method = #{serviceMethod,jdbcType=VARCHAR},
+      service_version = #{serviceVersion,jdbcType=VARCHAR},
+      service_name = #{serviceName,jdbcType=VARCHAR},
+      service_undefined1 = #{serviceUndefined1,jdbcType=VARCHAR},
+      service_undefined2 = #{serviceUndefined2,jdbcType=VARCHAR},
+      createtime = #{createtime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

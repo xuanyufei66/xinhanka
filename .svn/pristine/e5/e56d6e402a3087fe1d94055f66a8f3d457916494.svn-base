@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.payease.wallet.orm.inter.TNoticeInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.payease.wallet.entity.pojo.TNoticeInfo" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="notice_title" property="noticeTitle" jdbcType="VARCHAR" />
+    <result column="notice_url" property="noticeUrl" jdbcType="VARCHAR" />
+    <result column="notice_desc" property="noticeDesc" jdbcType="VARCHAR" />
+    <result column="order_num" property="orderNum" jdbcType="INTEGER" />
+    <result column="notice_time" property="noticeTime" jdbcType="TIMESTAMP" />
+    <result column="updatetime" property="updatetime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, notice_title, notice_url, notice_desc, order_num, notice_time, updatetime
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.payease.wallet.entity.pojo.TNoticeInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_notice_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_notice_info
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_notice_info
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.payease.wallet.entity.pojo.TNoticeInfoExample" >
+    delete from t_notice_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.payease.wallet.entity.pojo.TNoticeInfo" useGeneratedKeys="true" keyProperty="id" >
+    insert into t_notice_info (notice_title, notice_url, notice_desc, 
+      order_num, notice_time, updatetime
+      )
+    values (#{noticeTitle,jdbcType=VARCHAR}, #{noticeUrl,jdbcType=VARCHAR}, #{noticeDesc,jdbcType=VARCHAR}, 
+      #{orderNum,jdbcType=INTEGER}, #{noticeTime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.payease.wallet.entity.pojo.TNoticeInfo" useGeneratedKeys="true" keyProperty="id" >
+    insert into t_notice_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="noticeTitle != null" >
+        notice_title,
+      </if>
+      <if test="noticeUrl != null" >
+        notice_url,
+      </if>
+      <if test="noticeDesc != null" >
+        notice_desc,
+      </if>
+      <if test="orderNum != null" >
+        order_num,
+      </if>
+      <if test="noticeTime != null" >
+        notice_time,
+      </if>
+      <if test="updatetime != null" >
+        updatetime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="noticeTitle != null" >
+        #{noticeTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="noticeUrl != null" >
+        #{noticeUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="noticeDesc != null" >
+        #{noticeDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNum != null" >
+        #{orderNum,jdbcType=INTEGER},
+      </if>
+      <if test="noticeTime != null" >
+        #{noticeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.payease.wallet.entity.pojo.TNoticeInfoExample" resultType="java.lang.Integer" >
+    select count(*) from t_notice_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_notice_info
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.noticeTitle != null" >
+        notice_title = #{record.noticeTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.noticeUrl != null" >
+        notice_url = #{record.noticeUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.noticeDesc != null" >
+        notice_desc = #{record.noticeDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderNum != null" >
+        order_num = #{record.orderNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.noticeTime != null" >
+        notice_time = #{record.noticeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updatetime != null" >
+        updatetime = #{record.updatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_notice_info
+    set id = #{record.id,jdbcType=BIGINT},
+      notice_title = #{record.noticeTitle,jdbcType=VARCHAR},
+      notice_url = #{record.noticeUrl,jdbcType=VARCHAR},
+      notice_desc = #{record.noticeDesc,jdbcType=VARCHAR},
+      order_num = #{record.orderNum,jdbcType=INTEGER},
+      notice_time = #{record.noticeTime,jdbcType=TIMESTAMP},
+      updatetime = #{record.updatetime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.payease.wallet.entity.pojo.TNoticeInfo" >
+    update t_notice_info
+    <set >
+      <if test="noticeTitle != null" >
+        notice_title = #{noticeTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="noticeUrl != null" >
+        notice_url = #{noticeUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="noticeDesc != null" >
+        notice_desc = #{noticeDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNum != null" >
+        order_num = #{orderNum,jdbcType=INTEGER},
+      </if>
+      <if test="noticeTime != null" >
+        notice_time = #{noticeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.payease.wallet.entity.pojo.TNoticeInfo" >
+    update t_notice_info
+    set notice_title = #{noticeTitle,jdbcType=VARCHAR},
+      notice_url = #{noticeUrl,jdbcType=VARCHAR},
+      notice_desc = #{noticeDesc,jdbcType=VARCHAR},
+      order_num = #{orderNum,jdbcType=INTEGER},
+      notice_time = #{noticeTime,jdbcType=TIMESTAMP},
+      updatetime = #{updatetime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

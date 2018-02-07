@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.payease.wallet.orm.inter.TAccountBankHistoryMapper" >
+  <resultMap id="BaseResultMap" type="com.payease.wallet.entity.pojo.TAccountBankHistory" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="t_user_info_id" property="tUserInfoId" jdbcType="BIGINT" />
+    <result column="t_bank_base_id" property="tBankBaseId" jdbcType="BIGINT" />
+    <result column="bank_card_no" property="bankCardNo" jdbcType="VARCHAR" />
+    <result column="bank_card_type" property="bankCardType" jdbcType="VARCHAR" />
+    <result column="tokenid" property="tokenid" jdbcType="VARCHAR" />
+    <result column="mobile_phone" property="mobilePhone" jdbcType="VARCHAR" />
+    <result column="single_limit" property="singleLimit" jdbcType="VARCHAR" />
+    <result column="day_limit" property="dayLimit" jdbcType="VARCHAR" />
+    <result column="use_time" property="useTime" jdbcType="TIMESTAMP" />
+    <result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="updatetime" property="updatetime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, t_user_info_id, t_bank_base_id, bank_card_no, bank_card_type, tokenid, mobile_phone, 
+    single_limit, day_limit, use_time, createtime, updatetime
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.payease.wallet.entity.pojo.TAccountBankHistoryExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_account_bank_history
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_account_bank_history
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_account_bank_history
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.payease.wallet.entity.pojo.TAccountBankHistoryExample" >
+    delete from t_account_bank_history
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.payease.wallet.entity.pojo.TAccountBankHistory" useGeneratedKeys="true" keyProperty="id" >
+    insert into t_account_bank_history (t_user_info_id, t_bank_base_id, bank_card_no, 
+      bank_card_type, tokenid, mobile_phone, 
+      single_limit, day_limit, use_time, 
+      createtime, updatetime)
+    values (#{tUserInfoId,jdbcType=BIGINT}, #{tBankBaseId,jdbcType=BIGINT}, #{bankCardNo,jdbcType=VARCHAR}, 
+      #{bankCardType,jdbcType=VARCHAR}, #{tokenid,jdbcType=VARCHAR}, #{mobilePhone,jdbcType=VARCHAR}, 
+      #{singleLimit,jdbcType=VARCHAR}, #{dayLimit,jdbcType=VARCHAR}, #{useTime,jdbcType=TIMESTAMP}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.payease.wallet.entity.pojo.TAccountBankHistory" useGeneratedKeys="true" keyProperty="id" >
+    insert into t_account_bank_history
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="tUserInfoId != null" >
+        t_user_info_id,
+      </if>
+      <if test="tBankBaseId != null" >
+        t_bank_base_id,
+      </if>
+      <if test="bankCardNo != null" >
+        bank_card_no,
+      </if>
+      <if test="bankCardType != null" >
+        bank_card_type,
+      </if>
+      <if test="tokenid != null" >
+        tokenid,
+      </if>
+      <if test="mobilePhone != null" >
+        mobile_phone,
+      </if>
+      <if test="singleLimit != null" >
+        single_limit,
+      </if>
+      <if test="dayLimit != null" >
+        day_limit,
+      </if>
+      <if test="useTime != null" >
+        use_time,
+      </if>
+      <if test="createtime != null" >
+        createtime,
+      </if>
+      <if test="updatetime != null" >
+        updatetime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="tUserInfoId != null" >
+        #{tUserInfoId,jdbcType=BIGINT},
+      </if>
+      <if test="tBankBaseId != null" >
+        #{tBankBaseId,jdbcType=BIGINT},
+      </if>
+      <if test="bankCardNo != null" >
+        #{bankCardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCardType != null" >
+        #{bankCardType,jdbcType=VARCHAR},
+      </if>
+      <if test="tokenid != null" >
+        #{tokenid,jdbcType=VARCHAR},
+      </if>
+      <if test="mobilePhone != null" >
+        #{mobilePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="singleLimit != null" >
+        #{singleLimit,jdbcType=VARCHAR},
+      </if>
+      <if test="dayLimit != null" >
+        #{dayLimit,jdbcType=VARCHAR},
+      </if>
+      <if test="useTime != null" >
+        #{useTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.payease.wallet.entity.pojo.TAccountBankHistoryExample" resultType="java.lang.Integer" >
+    select count(*) from t_account_bank_history
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_account_bank_history
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.tUserInfoId != null" >
+        t_user_info_id = #{record.tUserInfoId,jdbcType=BIGINT},
+      </if>
+      <if test="record.tBankBaseId != null" >
+        t_bank_base_id = #{record.tBankBaseId,jdbcType=BIGINT},
+      </if>
+      <if test="record.bankCardNo != null" >
+        bank_card_no = #{record.bankCardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bankCardType != null" >
+        bank_card_type = #{record.bankCardType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tokenid != null" >
+        tokenid = #{record.tokenid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mobilePhone != null" >
+        mobile_phone = #{record.mobilePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.singleLimit != null" >
+        single_limit = #{record.singleLimit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dayLimit != null" >
+        day_limit = #{record.dayLimit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.useTime != null" >
+        use_time = #{record.useTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createtime != null" >
+        createtime = #{record.createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updatetime != null" >
+        updatetime = #{record.updatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_account_bank_history
+    set id = #{record.id,jdbcType=BIGINT},
+      t_user_info_id = #{record.tUserInfoId,jdbcType=BIGINT},
+      t_bank_base_id = #{record.tBankBaseId,jdbcType=BIGINT},
+      bank_card_no = #{record.bankCardNo,jdbcType=VARCHAR},
+      bank_card_type = #{record.bankCardType,jdbcType=VARCHAR},
+      tokenid = #{record.tokenid,jdbcType=VARCHAR},
+      mobile_phone = #{record.mobilePhone,jdbcType=VARCHAR},
+      single_limit = #{record.singleLimit,jdbcType=VARCHAR},
+      day_limit = #{record.dayLimit,jdbcType=VARCHAR},
+      use_time = #{record.useTime,jdbcType=TIMESTAMP},
+      createtime = #{record.createtime,jdbcType=TIMESTAMP},
+      updatetime = #{record.updatetime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.payease.wallet.entity.pojo.TAccountBankHistory" >
+    update t_account_bank_history
+    <set >
+      <if test="tUserInfoId != null" >
+        t_user_info_id = #{tUserInfoId,jdbcType=BIGINT},
+      </if>
+      <if test="tBankBaseId != null" >
+        t_bank_base_id = #{tBankBaseId,jdbcType=BIGINT},
+      </if>
+      <if test="bankCardNo != null" >
+        bank_card_no = #{bankCardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCardType != null" >
+        bank_card_type = #{bankCardType,jdbcType=VARCHAR},
+      </if>
+      <if test="tokenid != null" >
+        tokenid = #{tokenid,jdbcType=VARCHAR},
+      </if>
+      <if test="mobilePhone != null" >
+        mobile_phone = #{mobilePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="singleLimit != null" >
+        single_limit = #{singleLimit,jdbcType=VARCHAR},
+      </if>
+      <if test="dayLimit != null" >
+        day_limit = #{dayLimit,jdbcType=VARCHAR},
+      </if>
+      <if test="useTime != null" >
+        use_time = #{useTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createtime != null" >
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.payease.wallet.entity.pojo.TAccountBankHistory" >
+    update t_account_bank_history
+    set t_user_info_id = #{tUserInfoId,jdbcType=BIGINT},
+      t_bank_base_id = #{tBankBaseId,jdbcType=BIGINT},
+      bank_card_no = #{bankCardNo,jdbcType=VARCHAR},
+      bank_card_type = #{bankCardType,jdbcType=VARCHAR},
+      tokenid = #{tokenid,jdbcType=VARCHAR},
+      mobile_phone = #{mobilePhone,jdbcType=VARCHAR},
+      single_limit = #{singleLimit,jdbcType=VARCHAR},
+      day_limit = #{dayLimit,jdbcType=VARCHAR},
+      use_time = #{useTime,jdbcType=TIMESTAMP},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      updatetime = #{updatetime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

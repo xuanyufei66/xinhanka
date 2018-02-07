@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.payease.wallet.orm.inter.TUserSettingMapper" >
+  <resultMap id="BaseResultMap" type="com.payease.wallet.entity.pojo.TUserSetting" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="t_user_info_id" property="tUserInfoId" jdbcType="BIGINT" />
+    <result column="real_name_flag" property="realNameFlag" jdbcType="SMALLINT" />
+    <result column="gesture_login_flag" property="gestureLoginFlag" jdbcType="SMALLINT" />
+    <result column="gesture_way_flag" property="gestureWayFlag" jdbcType="SMALLINT" />
+    <result column="finger_flag" property="fingerFlag" jdbcType="SMALLINT" />
+    <result column="avoid_pwd_flag" property="avoidPwdFlag" jdbcType="SMALLINT" />
+    <result column="avoid_pay_amount" property="avoidPayAmount" jdbcType="VARCHAR" />
+    <result column="notice_flag" property="noticeFlag" jdbcType="SMALLINT" />
+    <result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="updatetime" property="updatetime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, t_user_info_id, real_name_flag, gesture_login_flag, gesture_way_flag, finger_flag, 
+    avoid_pwd_flag, avoid_pay_amount, notice_flag, createtime, updatetime
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.payease.wallet.entity.pojo.TUserSettingExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_user_setting
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_user_setting
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_user_setting
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.payease.wallet.entity.pojo.TUserSettingExample" >
+    delete from t_user_setting
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.payease.wallet.entity.pojo.TUserSetting" useGeneratedKeys="true" keyProperty="id" >
+    insert into t_user_setting (t_user_info_id, real_name_flag, gesture_login_flag, 
+      gesture_way_flag, finger_flag, avoid_pwd_flag, 
+      avoid_pay_amount, notice_flag, createtime, 
+      updatetime)
+    values (#{tUserInfoId,jdbcType=BIGINT}, #{realNameFlag,jdbcType=SMALLINT}, #{gestureLoginFlag,jdbcType=SMALLINT}, 
+      #{gestureWayFlag,jdbcType=SMALLINT}, #{fingerFlag,jdbcType=SMALLINT}, #{avoidPwdFlag,jdbcType=SMALLINT}, 
+      #{avoidPayAmount,jdbcType=VARCHAR}, #{noticeFlag,jdbcType=SMALLINT}, #{createtime,jdbcType=TIMESTAMP}, 
+      #{updatetime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.payease.wallet.entity.pojo.TUserSetting" useGeneratedKeys="true" keyProperty="id" >
+    insert into t_user_setting
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="tUserInfoId != null" >
+        t_user_info_id,
+      </if>
+      <if test="realNameFlag != null" >
+        real_name_flag,
+      </if>
+      <if test="gestureLoginFlag != null" >
+        gesture_login_flag,
+      </if>
+      <if test="gestureWayFlag != null" >
+        gesture_way_flag,
+      </if>
+      <if test="fingerFlag != null" >
+        finger_flag,
+      </if>
+      <if test="avoidPwdFlag != null" >
+        avoid_pwd_flag,
+      </if>
+      <if test="avoidPayAmount != null" >
+        avoid_pay_amount,
+      </if>
+      <if test="noticeFlag != null" >
+        notice_flag,
+      </if>
+      <if test="createtime != null" >
+        createtime,
+      </if>
+      <if test="updatetime != null" >
+        updatetime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="tUserInfoId != null" >
+        #{tUserInfoId,jdbcType=BIGINT},
+      </if>
+      <if test="realNameFlag != null" >
+        #{realNameFlag,jdbcType=SMALLINT},
+      </if>
+      <if test="gestureLoginFlag != null" >
+        #{gestureLoginFlag,jdbcType=SMALLINT},
+      </if>
+      <if test="gestureWayFlag != null" >
+        #{gestureWayFlag,jdbcType=SMALLINT},
+      </if>
+      <if test="fingerFlag != null" >
+        #{fingerFlag,jdbcType=SMALLINT},
+      </if>
+      <if test="avoidPwdFlag != null" >
+        #{avoidPwdFlag,jdbcType=SMALLINT},
+      </if>
+      <if test="avoidPayAmount != null" >
+        #{avoidPayAmount,jdbcType=VARCHAR},
+      </if>
+      <if test="noticeFlag != null" >
+        #{noticeFlag,jdbcType=SMALLINT},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.payease.wallet.entity.pojo.TUserSettingExample" resultType="java.lang.Integer" >
+    select count(*) from t_user_setting
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_user_setting
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.tUserInfoId != null" >
+        t_user_info_id = #{record.tUserInfoId,jdbcType=BIGINT},
+      </if>
+      <if test="record.realNameFlag != null" >
+        real_name_flag = #{record.realNameFlag,jdbcType=SMALLINT},
+      </if>
+      <if test="record.gestureLoginFlag != null" >
+        gesture_login_flag = #{record.gestureLoginFlag,jdbcType=SMALLINT},
+      </if>
+      <if test="record.gestureWayFlag != null" >
+        gesture_way_flag = #{record.gestureWayFlag,jdbcType=SMALLINT},
+      </if>
+      <if test="record.fingerFlag != null" >
+        finger_flag = #{record.fingerFlag,jdbcType=SMALLINT},
+      </if>
+      <if test="record.avoidPwdFlag != null" >
+        avoid_pwd_flag = #{record.avoidPwdFlag,jdbcType=SMALLINT},
+      </if>
+      <if test="record.avoidPayAmount != null" >
+        avoid_pay_amount = #{record.avoidPayAmount,jdbcType=VARCHAR},
+      </if>
+      <if test="record.noticeFlag != null" >
+        notice_flag = #{record.noticeFlag,jdbcType=SMALLINT},
+      </if>
+      <if test="record.createtime != null" >
+        createtime = #{record.createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updatetime != null" >
+        updatetime = #{record.updatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_user_setting
+    set id = #{record.id,jdbcType=BIGINT},
+      t_user_info_id = #{record.tUserInfoId,jdbcType=BIGINT},
+      real_name_flag = #{record.realNameFlag,jdbcType=SMALLINT},
+      gesture_login_flag = #{record.gestureLoginFlag,jdbcType=SMALLINT},
+      gesture_way_flag = #{record.gestureWayFlag,jdbcType=SMALLINT},
+      finger_flag = #{record.fingerFlag,jdbcType=SMALLINT},
+      avoid_pwd_flag = #{record.avoidPwdFlag,jdbcType=SMALLINT},
+      avoid_pay_amount = #{record.avoidPayAmount,jdbcType=VARCHAR},
+      notice_flag = #{record.noticeFlag,jdbcType=SMALLINT},
+      createtime = #{record.createtime,jdbcType=TIMESTAMP},
+      updatetime = #{record.updatetime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.payease.wallet.entity.pojo.TUserSetting" >
+    update t_user_setting
+    <set >
+      <if test="tUserInfoId != null" >
+        t_user_info_id = #{tUserInfoId,jdbcType=BIGINT},
+      </if>
+      <if test="realNameFlag != null" >
+        real_name_flag = #{realNameFlag,jdbcType=SMALLINT},
+      </if>
+      <if test="gestureLoginFlag != null" >
+        gesture_login_flag = #{gestureLoginFlag,jdbcType=SMALLINT},
+      </if>
+      <if test="gestureWayFlag != null" >
+        gesture_way_flag = #{gestureWayFlag,jdbcType=SMALLINT},
+      </if>
+      <if test="fingerFlag != null" >
+        finger_flag = #{fingerFlag,jdbcType=SMALLINT},
+      </if>
+      <if test="avoidPwdFlag != null" >
+        avoid_pwd_flag = #{avoidPwdFlag,jdbcType=SMALLINT},
+      </if>
+      <if test="avoidPayAmount != null" >
+        avoid_pay_amount = #{avoidPayAmount,jdbcType=VARCHAR},
+      </if>
+      <if test="noticeFlag != null" >
+        notice_flag = #{noticeFlag,jdbcType=SMALLINT},
+      </if>
+      <if test="createtime != null" >
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.payease.wallet.entity.pojo.TUserSetting" >
+    update t_user_setting
+    set t_user_info_id = #{tUserInfoId,jdbcType=BIGINT},
+      real_name_flag = #{realNameFlag,jdbcType=SMALLINT},
+      gesture_login_flag = #{gestureLoginFlag,jdbcType=SMALLINT},
+      gesture_way_flag = #{gestureWayFlag,jdbcType=SMALLINT},
+      finger_flag = #{fingerFlag,jdbcType=SMALLINT},
+      avoid_pwd_flag = #{avoidPwdFlag,jdbcType=SMALLINT},
+      avoid_pay_amount = #{avoidPayAmount,jdbcType=VARCHAR},
+      notice_flag = #{noticeFlag,jdbcType=SMALLINT},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      updatetime = #{updatetime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectRealName" resultType="java.lang.Integer">
+      SELECT  real_name_flag  FROM  t_user_setting  WHERE  t_user_info_id =#{userId}
+  </select>
+</mapper>

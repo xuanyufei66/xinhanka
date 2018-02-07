@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+	<classPathEntry location="/Users/apple/Documents/software/repository/mysql/mysql-connector-java/5.1.27/mysql-connector-java-5.1.27.jar" />
+	<context id="context1">
+		<!-- 		给生成的bean实现序列化接口 -->
+		<plugin type="org.mybatis.generator.plugins.SerializablePlugin"></plugin>
+		<commentGenerator>
+			<!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://172.30.101.249:3306/koreadb" userId="koreadb"
+			password="Korea$2017" />
+		<javaModelGenerator targetPackage="com.payease.wallet.entity.pojo"
+			targetProject="../wallet-entity/src/main/java" />
+		<sqlMapGenerator targetPackage="com.payease.wallet.orm.mapper"
+			targetProject="src/main/java" />
+		<javaClientGenerator type="XMLMAPPER"
+			targetPackage="com.payease.wallet.orm.inter" targetProject="src/main/java">
+			<property name="enableSubPackages" value="true" />
+		</javaClientGenerator>
+
+
+
+     <!--   <table schema="koreadb" tableName="t_router">
+            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+        </table>
+
+
+		<table schema="koreadb" tableName="t_account_bank">
+			<generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+		</table>
+
+
+		<table schema="koreadb" tableName="t_account_info">
+			<generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+		</table>
+
+		<table schema="koreadb" tableName="t_account_transact">
+			<generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+		</table>
+
+		<table schema="koreadb" tableName="t_bank_base">
+			<generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+		</table>
+
+		<table schema="koreadb" tableName="t_currency_rate">
+			<generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+		</table>
+
+		<table schema="koreadb" tableName="t_korea_apply">
+			<generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+		</table>
+
+		<table schema="koreadb" tableName="t_korea_info">
+			<generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+		</table>
+
+		<table schema="koreadb" tableName="t_korea_transact">
+			<generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+		</table>
+
+		<table schema="koreadb" tableName="t_login_history">
+			<generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+		</table>
+
+		<table schema="koreadb" tableName="t_page_image_info">
+			<generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+		</table>
+
+		<table schema="koreadb" tableName="t_password_info">
+			<generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+		</table>
+
+		<table schema="koreadb" tableName="t_user_info">
+			<generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+		</table>
+
+		<table schema="koreadb" tableName="t_user_message">
+			<generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+		</table>
+
+		<table schema="koreadb" tableName="t_user_setting">
+			<generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+		</table>
+
+-->
+
+
+		<table schema="koreadb" tableName="t_account_bank_history">
+			<generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+		</table>
+
+
+
+
+
+
+
+	</context>
+</generatorConfiguration>

@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.payease.wallet.orm.inter.TPasswordInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.payease.wallet.entity.pojo.TPasswordInfo" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="t_user_info_id" property="tUserInfoId" jdbcType="BIGINT" />
+    <result column="login_password" property="loginPassword" jdbcType="VARCHAR" />
+    <result column="pay_password" property="payPassword" jdbcType="VARCHAR" />
+    <result column="gesture_password" property="gesturePassword" jdbcType="VARCHAR" />
+    <result column="login_password_random_code" property="loginPasswordRandomCode" jdbcType="VARCHAR" />
+    <result column="pay_password_random_code" property="payPasswordRandomCode" jdbcType="VARCHAR" />
+    <result column="gesture_password_random_code" property="gesturePasswordRandomCode" jdbcType="VARCHAR" />
+    <result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="updatetime" property="updatetime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, t_user_info_id, login_password, pay_password, gesture_password, login_password_random_code, 
+    pay_password_random_code, gesture_password_random_code, createtime, updatetime
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.payease.wallet.entity.pojo.TPasswordInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_password_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_password_info
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_password_info
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.payease.wallet.entity.pojo.TPasswordInfoExample" >
+    delete from t_password_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.payease.wallet.entity.pojo.TPasswordInfo" useGeneratedKeys="true" keyProperty="id" >
+    insert into t_password_info (t_user_info_id, login_password, pay_password, 
+      gesture_password, login_password_random_code, 
+      pay_password_random_code, gesture_password_random_code, 
+      createtime, updatetime)
+    values (#{tUserInfoId,jdbcType=BIGINT}, #{loginPassword,jdbcType=VARCHAR}, #{payPassword,jdbcType=VARCHAR}, 
+      #{gesturePassword,jdbcType=VARCHAR}, #{loginPasswordRandomCode,jdbcType=VARCHAR}, 
+      #{payPasswordRandomCode,jdbcType=VARCHAR}, #{gesturePasswordRandomCode,jdbcType=VARCHAR}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.payease.wallet.entity.pojo.TPasswordInfo" useGeneratedKeys="true" keyProperty="id" >
+    insert into t_password_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="tUserInfoId != null" >
+        t_user_info_id,
+      </if>
+      <if test="loginPassword != null" >
+        login_password,
+      </if>
+      <if test="payPassword != null" >
+        pay_password,
+      </if>
+      <if test="gesturePassword != null" >
+        gesture_password,
+      </if>
+      <if test="loginPasswordRandomCode != null" >
+        login_password_random_code,
+      </if>
+      <if test="payPasswordRandomCode != null" >
+        pay_password_random_code,
+      </if>
+      <if test="gesturePasswordRandomCode != null" >
+        gesture_password_random_code,
+      </if>
+      <if test="createtime != null" >
+        createtime,
+      </if>
+      <if test="updatetime != null" >
+        updatetime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="tUserInfoId != null" >
+        #{tUserInfoId,jdbcType=BIGINT},
+      </if>
+      <if test="loginPassword != null" >
+        #{loginPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="payPassword != null" >
+        #{payPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="gesturePassword != null" >
+        #{gesturePassword,jdbcType=VARCHAR},
+      </if>
+      <if test="loginPasswordRandomCode != null" >
+        #{loginPasswordRandomCode,jdbcType=VARCHAR},
+      </if>
+      <if test="payPasswordRandomCode != null" >
+        #{payPasswordRandomCode,jdbcType=VARCHAR},
+      </if>
+      <if test="gesturePasswordRandomCode != null" >
+        #{gesturePasswordRandomCode,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.payease.wallet.entity.pojo.TPasswordInfoExample" resultType="java.lang.Integer" >
+    select count(*) from t_password_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_password_info
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.tUserInfoId != null" >
+        t_user_info_id = #{record.tUserInfoId,jdbcType=BIGINT},
+      </if>
+      <if test="record.loginPassword != null" >
+        login_password = #{record.loginPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payPassword != null" >
+        pay_password = #{record.payPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gesturePassword != null" >
+        gesture_password = #{record.gesturePassword,jdbcType=VARCHAR},
+      </if>
+      <if test="record.loginPasswordRandomCode != null" >
+        login_password_random_code = #{record.loginPasswordRandomCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payPasswordRandomCode != null" >
+        pay_password_random_code = #{record.payPasswordRandomCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gesturePasswordRandomCode != null" >
+        gesture_password_random_code = #{record.gesturePasswordRandomCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createtime != null" >
+        createtime = #{record.createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updatetime != null" >
+        updatetime = #{record.updatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_password_info
+    set id = #{record.id,jdbcType=BIGINT},
+      t_user_info_id = #{record.tUserInfoId,jdbcType=BIGINT},
+      login_password = #{record.loginPassword,jdbcType=VARCHAR},
+      pay_password = #{record.payPassword,jdbcType=VARCHAR},
+      gesture_password = #{record.gesturePassword,jdbcType=VARCHAR},
+      login_password_random_code = #{record.loginPasswordRandomCode,jdbcType=VARCHAR},
+      pay_password_random_code = #{record.payPasswordRandomCode,jdbcType=VARCHAR},
+      gesture_password_random_code = #{record.gesturePasswordRandomCode,jdbcType=VARCHAR},
+      createtime = #{record.createtime,jdbcType=TIMESTAMP},
+      updatetime = #{record.updatetime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.payease.wallet.entity.pojo.TPasswordInfo" >
+    update t_password_info
+    <set >
+      <if test="tUserInfoId != null" >
+        t_user_info_id = #{tUserInfoId,jdbcType=BIGINT},
+      </if>
+      <if test="loginPassword != null" >
+        login_password = #{loginPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="payPassword != null" >
+        pay_password = #{payPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="gesturePassword != null" >
+        gesture_password = #{gesturePassword,jdbcType=VARCHAR},
+      </if>
+      <if test="loginPasswordRandomCode != null" >
+        login_password_random_code = #{loginPasswordRandomCode,jdbcType=VARCHAR},
+      </if>
+      <if test="payPasswordRandomCode != null" >
+        pay_password_random_code = #{payPasswordRandomCode,jdbcType=VARCHAR},
+      </if>
+      <if test="gesturePasswordRandomCode != null" >
+        gesture_password_random_code = #{gesturePasswordRandomCode,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.payease.wallet.entity.pojo.TPasswordInfo" >
+    update t_password_info
+    set t_user_info_id = #{tUserInfoId,jdbcType=BIGINT},
+      login_password = #{loginPassword,jdbcType=VARCHAR},
+      pay_password = #{payPassword,jdbcType=VARCHAR},
+      gesture_password = #{gesturePassword,jdbcType=VARCHAR},
+      login_password_random_code = #{loginPasswordRandomCode,jdbcType=VARCHAR},
+      pay_password_random_code = #{payPasswordRandomCode,jdbcType=VARCHAR},
+      gesture_password_random_code = #{gesturePasswordRandomCode,jdbcType=VARCHAR},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      updatetime = #{updatetime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <!--........................................................base end ...........................................................-->
+
+
+  <!-- 获取用户登录密码信息-登录时验证密码使用 zw add-->
+  <select id="getPasswordInfo" resultType="map" >
+    select t1.t_user_info_id as userId,t2.login_password as loginPwd,t2.login_password_random_code as pwdCode,
+           t2.gesture_password as gesturePwd,t2.gesture_password_random_code as gestureCode
+    from t_login_info t1
+    left join t_password_info t2 on t1.t_user_info_id = t2.t_user_info_id
+    where t1.acct_no=#{acctno} and t1.login_type='system'
+  </select>
+<!--修改登陆密码-->
+  <update id="upPass" parameterType="com.payease.wallet.entity.pojo.TPasswordInfo" >
+    update t_password_info
+    set  login_password = #{pass},
+           login_password_random_code = #{ranDom},
+           updatetime = #{upData}
+           where t_user_info_id = #{userId}
+  </update>
+  <!--修改手势密码-->
+  <update id="updateGesture" parameterType="com.payease.wallet.entity.pojo.TPasswordInfo" >
+    update t_password_info
+    set  gesture_password = #{pass},
+           gesture_password_random_code = #{ranDom},
+           updatetime = #{upData}
+    where t_user_info_id = #{userId}
+  </update>
+  <!--修改支付密码-->
+  <update id="updatePayPass" parameterType="com.payease.wallet.entity.pojo.TPasswordInfo" >
+    update t_password_info
+    set  pay_password = #{pass},
+    pay_password_random_code = #{ranDom},
+    updatetime = #{upData}
+    where t_user_info_id = #{userId}
+  </update>
+</mapper>

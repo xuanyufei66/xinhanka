@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <dubbo:application name="app-registry" owner="app-registry"/>
+    <dubbo:registry address="zookeeper://${dubbo.zookeeper}" check="false" subscribe="false"/>
+
+    <!-- 声明需要暴露的服务接口 -->
+    <dubbo:protocol name="dubbo" port="${dubbo.port}"/>
+    <dubbo:service interface="com.payease.wallet.app.api.service.IRouterService" ref="routerServiceImpl" protocol="dubbo" timeout="5000"/>
+    <dubbo:service interface="com.payease.wallet.app.api.service.IRegistryService" ref="registryServiceImpl" protocol="dubbo" timeout="5000"/>
+    <dubbo:service interface="com.payease.wallet.app.api.service.ILoginService" ref="loginServiceImpl" protocol="dubbo" timeout="5000"/>
+    <dubbo:service interface="com.payease.wallet.app.api.service.IndexService" ref="indexServiceImpl" protocol="dubbo" timeout="5000"/>
+    <dubbo:service interface="com.payease.wallet.app.api.service.ISettingService" ref="settingServiceImpl" protocol="dubbo" timeout="5000"/>
+    <dubbo:service interface="com.payease.wallet.app.api.service.IkoreaCardService" ref="koreaCardServiceImpl" protocol="dubbo" timeout="5000"/>
+    <dubbo:service interface="com.payease.wallet.app.api.service.IAccountBankCardService" ref="accountBankCardServiceImpl" protocol="dubbo" timeout="5000"/>
+    <dubbo:service interface="com.payease.wallet.app.api.service.IGetUserInfoService" ref="getUserInfoServiceImpl" protocol="dubbo" timeout="5000"/>
+
+    <dubbo:registry address="zookeeper://${dubbo.zookeeper}" check="false"/>
+    <dubbo:reference interface="com.payease.wallet.gateway.api.service.IAuthenticationService" id="authenticationService"/>
+    <dubbo:reference interface="com.payease.wallet.gateway.api.service.IMessageCallService" id="messageCallService"/>
+    <dubbo:reference interface="com.payease.wallet.gateway.api.service.IPaymentService" id="paymentService"/>
+    <dubbo:reference interface="com.payease.wallet.gateway.api.service.IFastPaymentService" id="fastPaymentService"/>
+
+
+</beans>
